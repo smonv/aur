@@ -22,7 +22,7 @@ pkgver() {
 
 prepare() {
 	cd "${srcdir}/${pkgname}"
-	cp ../../config.h .
+	cp -f ../../config.h .
 }
 
 

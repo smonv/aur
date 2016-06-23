@@ -65,48 +65,44 @@ static int bellvolume = 0;
 /* default TERM value */
 static char termname[] = "st-256color";
 
-static unsigned int tabspaces = 8;
+static unsigned int tabspaces = 4;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
+	/* https://github.com/d3m1gd/base16-st/blob/master/solarized.dark.patch */
 	/* 8 normal colors */
-	"#282828",
-	"#cc241d",
-	"#98971a",
-	"#d79921",
-	"#458588",
-	"#b16286",
-	"#689d6a",
-	"#a89984",
+	"#002b36", /* color base00 */
+	"#dc322f", /* color base08 */
+	"#859900", /* color base0B */
+	"#b58900", /* color base0A */
+	"#268bd2", /* color base0D */
+	"#6c71c4", /* color base0E */
+	"#2aa198", /* color base0C */
+	"#93a1a1", /* color base05 */
 
 	/* 8 bright colors */
-	"#928374",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#fbf1c7",
+	"#657b83", /* color base03 */
+	"#dc322f", /* color base08 */
+	"#859900", /* color base0B */
+	"#b58900", /* color base0A */
+	"#268bd2", /* color base0D */
+	"#6c71c4", /* color base0E */
+	"#2aa198", /* color base0C */
+	"#fdf6e3", /* color base07 */
+
+	/* additional colors */
+	"#cb4b16", /* color base09 */
+	"#d33682", /* color base0F */
+	"#073642", /* color base01 */
+	"#586e75", /* color base02 */
+	"#839496", /* color base04 */
+	"#eee8d5", /* color base06 */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#1d2021",
-	"#282828",
-	"#3c3836",
-	"#504945",
-	"#665c54",
-	"#7c6f64",
-	"#928374",
-	"#d65d0e",
-	"#32302f",
-	"#a89984",
-	"#bdae93",
-	"#d5c4a1",
-	"#ebdbb2",
-	"#fbf1c7",
-	"#fe8019",
+	"#93a1a1", /* color base05 */
+	"#002b36", /* color base00 */
 };
 
 
@@ -114,10 +110,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-static unsigned int defaultfg = 15;
-static unsigned int defaultbg = 234;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+static unsigned int defaultfg = 7;
+static unsigned int defaultbg = 0;
+static unsigned int defaultcs = 7;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -140,7 +136,7 @@ static unsigned int mousebg = 0;
  * will reverse too. Another logic would only make the simple feature too
  * complex.
  */
-static unsigned int defaultitalic = 11;
+static unsigned int defaultitalic = 7;
 static unsigned int defaultunderline = 7;
 
 /*
@@ -159,17 +155,17 @@ static MouseShortcut mshortcuts[] = {
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ MODKEY|ShiftMask,     XK_Prior,       xzoom,          {.f = +1} },
-	{ MODKEY|ShiftMask,     XK_Next,        xzoom,          {.f = -1} },
-	{ MODKEY|ShiftMask,     XK_Home,        xzoomreset,     {.f =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
-	{ ControlMask|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
-	{ ControlMask|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
-	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
+	// { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+	// { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
+	// { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+	// { MODKEY|ShiftMask,     XK_Prior,       xzoom,          {.f = +1} },
+	// { MODKEY|ShiftMask,     XK_Next,        xzoom,          {.f = -1} },
+	// { MODKEY|ShiftMask,     XK_Home,        xzoomreset,     {.f =  0} },
+	// { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+	// { MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
+	{ ControlMask|ShiftMask,XK_C,           clipcopy,       {.i =  0} },
+	{ ControlMask|ShiftMask,XK_V,           clippaste,      {.i =  0} },
+	// { MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
 };
 
 /*
