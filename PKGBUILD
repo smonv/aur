@@ -1,7 +1,7 @@
 # Maintainer: Tien Thanh <tthanh.v9.16@gmail.com>
 
 pkgname=st
-pkgver=0.6.r72.g528241a
+pkgver=528241a
 pkgrel=1
 epoch=
 pkgdesc="Simple virtual terminal emulator for X"
@@ -12,22 +12,21 @@ depends=("libxft")
 makedepends=("ncurses" "libxext" "git")
 provides=("$pkgname")
 conflicts=("$pkgname")
-source=("git://git.suckless.org/st")
+source=("git://git.suckless.org/st#commit=528241a")
 sha1sums=('SKIP')
-
-pkgver() {
-	cd "${srcdir}/${pkgname}"
-	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
 
 prepare() {
 	cd "${srcdir}/${pkgname}"
-	cp -f ../../config.h .
+	git apply ../../st-hidecursor-git-20160620-528241a.diff
+	git apply ../../st-no_bold_colors-git-20160620-528241a.diff
+	git apply ../../st-solarized-dark-git-20160620-528241a.diff
+	git apply ../../st-tthanh-custom-git-20160620-528241a.diff
 }
 
 
 build() {
 	cd "${srcdir}/${pkgname}"
+	make config.h
 	make
 }
 
