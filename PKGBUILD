@@ -1,6 +1,6 @@
 # Maintainer: Tien Thanh <tthanh.v9.16@gmail.com>
 
-pkgname=st
+pkgname=st-git
 pkgver=235b438
 pkgrel=1
 epoch=
@@ -10,15 +10,15 @@ url="http://git.suckless.org/st"
 license=('MIT')
 depends=("libxft")
 makedepends=("ncurses" "libxext" "git")
-provides=("$pkgname")
-conflicts=("$pkgname")
-source=("git://git.suckless.org/st#commit=235b438"
+provides=("st")
+conflicts=("st")
+source=("git://git.suckless.org/st"
 		"http://st.suckless.org/patches/st-hidecursor-20160710-528241a.diff"
 		"http://st.suckless.org/patches/st-no_bold_colors-20160710-528241a.diff")
 sha1sums=('SKIP' 'SKIP' 'SKIP')
 
 prepare() {
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/st"
 	git apply ../st-hidecursor-20160710-528241a.diff
 	git apply ../st-no_bold_colors-20160710-528241a.diff
 	git apply ../../base16-eighties-git-20160620-528241a.diff
@@ -26,13 +26,13 @@ prepare() {
 
 
 build() {
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/st"
 	make config.h
 	make
 }
 
 package() {
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/st"
 	sudo make install
 	make clean
 }
