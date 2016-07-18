@@ -9,7 +9,7 @@ index 9e61010..fef6a88 100644
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 +static char font[] = "Source Code Pro Semibold:pixelsize=14:antialias=true:autohint=true";
  static int borderpx = 2;
- 
+
  /*
 @@ -16,7 +16,7 @@ static int borderpx = 2;
   * 4: value of shell in /etc/passwd
@@ -19,14 +19,14 @@ index 9e61010..fef6a88 100644
 +static char shell[] = "/bin/bash";
  static char *utmp = NULL;
  static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
- 
+
 @@ -65,35 +65,31 @@ static int bellvolume = 0;
  /* default TERM value */
  static char termname[] = "st-256color";
- 
+
 -static unsigned int tabspaces = 8;
 +static unsigned int tabspaces = 4;
- 
+
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -46,7 +46,7 @@ index 9e61010..fef6a88 100644
 +	"#cc99cc",
 +	"#66cccc",
 +	"#d3d0c8",
- 
+
  	/* 8 bright colors */
 -	"gray50",
 -	"red",
@@ -64,15 +64,15 @@ index 9e61010..fef6a88 100644
 +	"#cc99cc",
 +	"#66cccc",
 +	"#f2f0ec",
- 
+
  	[255] = 0,
 -
 -	/* more colors can be added after 255 to use with DefaultXX */
 -	"#cccccc",
 -	"#555555",
  };
- 
- 
+
+
 @@ -103,8 +99,8 @@ static const char *colorname[] = {
   */
  static unsigned int defaultfg = 7;
@@ -80,8 +80,8 @@ index 9e61010..fef6a88 100644
 -static unsigned int defaultcs = 256;
 -static unsigned int defaultrcs = 257;
 +static unsigned int defaultcs = 7;
-+static unsigned int defaultrcs = 7;
- 
++static unsigned int defaultrcs = 0;
+
  /*
   * Default shape of cursor
 @@ -113,7 +109,7 @@ static unsigned int defaultrcs = 257;
@@ -90,7 +90,7 @@ index 9e61010..fef6a88 100644
   */
 -static unsigned int cursorshape = 2;
 +static unsigned int cursorshape = 4;
- 
+
  /*
   * Default colour and shape of the mouse cursor
 @@ -153,9 +149,9 @@ static Shortcut shortcuts[] = {
@@ -105,4 +105,4 @@ index 9e61010..fef6a88 100644
 +	{ ControlMask|ShiftMask,XK_V,           clippaste,      {.i =  0} },
  	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
  };
- 
+
