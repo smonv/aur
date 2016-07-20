@@ -21,7 +21,7 @@ prepare() {
 	cd "${srcdir}/st"
 	git apply ../st-hidecursor-20160710-528241a.diff
 	git apply ../st-no_bold_colors-20160710-528241a.diff
-	git apply ../../base16-eighties-git-20160620-528241a.diff
+	git apply ../../base16-eighties-git-528241a.diff
 }
 
 
