@@ -1,7 +1,7 @@
 # Maintainer: Tien Thanh <tthanh.v9.16@gmail.com>
 
 pkgname=st-git
-pkgver=235b438
+pkgver=latest
 pkgrel=1
 epoch=
 pkgdesc="Simple virtual terminal emulator for X"
