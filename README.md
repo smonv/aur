@@ -1,5 +1,6 @@
 ### build script for st on arch
-Color: solarized dark
+Color: base16-eighties
+
 Mapping: copy/paste C+S+c/C+S+v
 
 ```
