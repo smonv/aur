@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index b41747f..cb3ddb9 100644
+index b41747f..3534da5 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@
@@ -7,7 +7,7 @@ index b41747f..cb3ddb9 100644
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-+static char font[] = "Source Code Pro:pixelsize=14:antialias=true:autohint=true";
++static char font[] = "Source Code Pro Semibold:pixelsize=14:antialias=true:autohint=true";
  static int borderpx = 2;
  
  /*
@@ -84,6 +84,15 @@ index b41747f..cb3ddb9 100644
  
  /*
   * Default shape of cursor
+@@ -128,7 +124,7 @@ static unsigned int defaultrcs = 257;
+  * 6: Bar ("|")
+  * 7: Snowman ("☃")
+  */
+-static unsigned int cursorshape = 2;
++static unsigned int cursorshape = 4;
+ 
+ /*
+  * Default colour and shape of the mouse cursor
 @@ -168,9 +164,9 @@ static Shortcut shortcuts[] = {
  	{ MODKEY|ShiftMask,     XK_Next,        xzoom,          {.f = -1} },
  	{ MODKEY|ShiftMask,     XK_Home,        xzoomreset,     {.f =  0} },
