@@ -13,15 +13,15 @@ makedepends=("ncurses" "libxext" "git")
 provides=("st")
 conflicts=("st")
 source=("git://git.suckless.org/st"
-		"http://st.suckless.org/patches/st-hidecursor-20160710-528241a.diff"
-		"http://st.suckless.org/patches/st-no_bold_colors-20160710-528241a.diff")
+		"http://st.suckless.org/patches/st-hidecursor-20160727-308bfbf.diff"
+		"http://st.suckless.org/patches/st-no_bold_colors-20160727-308bfbf.diff")
 sha1sums=('SKIP' 'SKIP' 'SKIP')
 
 prepare() {
 	cd "${srcdir}/st"
-	git apply ../st-hidecursor-20160710-528241a.diff
-	git apply ../st-no_bold_colors-20160710-528241a.diff
-	git apply ../../base16-eighties-git-528241a.diff
+	git apply ../st-hidecursor-20160727-308bfbf.diff
+	git apply ../st-no_bold_colors-20160727-308bfbf.diff
+	git apply ../../base16-eighties-latest.diff
 }
 
 
