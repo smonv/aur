@@ -14,9 +14,8 @@ makedepends=("ncurses" "libxext" "git")
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=("git://git.suckless.org/st"
-		"http://st.suckless.org/patches/st-hidecursor-20160727-308bfbf.diff"
-		"http://st.suckless.org/patches/st-no_bold_colors-20160727-308bfbf.diff")
-sha1sums=('SKIP' 'SKIP' 'SKIP')
+		"http://st.suckless.org/patches/st-hidecursor-20160727-308bfbf.diff")
+sha1sums=('SKIP' 'SKIP')
 
 pkgver(){
 	cd "${srcdir}/${_pkgname}"
@@ -26,8 +25,7 @@ pkgver(){
 prepare() {
 	cd "${srcdir}/${_pkgname}"
 	git apply ../st-hidecursor-20160727-308bfbf.diff
-	git apply ../st-no_bold_colors-20160727-308bfbf.diff
-	git apply ../../colorscheme-apprentice.diff
+	git apply ../../custom.diff
 }
 
 
@@ -39,5 +37,5 @@ build() {
 
 package() {
 	cd "${srcdir}/${_pkgname}"
-	make PREFIX=/usr DESTDIR=${pkgdir} install
+	sudo make install
 }
