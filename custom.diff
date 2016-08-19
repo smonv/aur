@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index b41747f..6f3b735 100644
+index b41747f..65499b4 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@
@@ -20,16 +20,14 @@ index b41747f..6f3b735 100644
  static char *utmp = NULL;
  static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
  
-@@ -80,44 +80,49 @@ static char termname[] = "st-256color";
+@@ -80,44 +80,39 @@ static char termname[] = "st-256color";
   *
   *	stty tabs
   */
 -static unsigned int tabspaces = 8;
 +static unsigned int tabspaces = 4;
  
--/* Terminal colors (16 first used in escape sequence) */
-+// Base16 Grayscale dark - simple terminal color setup
-+// Alexandre Gavioli (https://github.com/Alexx2/)
+ /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
 -	/* 8 normal colors */
 -	"black",
@@ -51,41 +49,32 @@ index b41747f..6f3b735 100644
 -	"cyan",
 -	"white",
 +	/* Normal colors */
-+	"#101010", /*  0: Base 00 - Black   */
-+	"#7c7c7c", /*  1: Base 08 - Red     */
-+	"#8e8e8e", /*  2: Base 0B - Green   */
-+	"#a0a0a0", /*  3: Base 0A - Yellow  */
-+	"#686868", /*  4: Base 0D - Blue    */
-+	"#747474", /*  5: Base 0E - Magenta */
-+	"#868686", /*  6: Base 0C - Cyan    */
-+	"#b9b9b9", /*  7: Base 05 - White   */
++	"#212121",
++	"#E32791",
++	"#10A778",
++	"#A89C14",
++	"#008EC4",
++	"#523C79",
++	"#20A5BA",
++	"#C6C6C6",
 +
 +	/* Bright colors */
-+	"#525252", /*  8: Base 03 - Bright Black */
-+	"#7c7c7c", /*  9: Base 08 - Red          */
-+	"#8e8e8e", /* 10: Base 0B - Green        */
-+	"#a0a0a0", /* 11: Base 0A - Yellow       */
-+	"#686868", /* 12: Base 0D - Blue         */
-+	"#747474", /* 13: Base 0E - Magenta      */
-+	"#868686", /* 14: Base 0C - Cyan         */
-+	"#f7f7f7", /* 15: Base 05 - Bright White */
-+
-+	/* A few more colors */
-+
-+	"#999999", /* 16: Base 09 */
-+	"#5e5e5e", /* 17: Base 0F */
-+	"#252525", /* 18: Base 01 */
-+	"#464646", /* 19: Base 02 */
-+	"#ababab", /* 20: Base 04 */
-+	"#e3e3e3", /* 21: Base 06 */
++	"#424242",
++	"#fb007a",
++	"#5FD7A7",
++	"#F3E430",
++	"#20BBFC",
++	"#6855DE",
++	"#4FB8CC",
++	"#F1F1F1",
  
  	[255] = 0,
  
 -	/* more colors can be added after 255 to use with DefaultXX */
 -	"#cccccc",
 -	"#555555",
-+	[256] = "#b9b9b9", /* default fg: Base 05 */
-+	[257] = "#101010", /* default bg: Base 00 */
++	[256] = "#C6C6C6",
++	[257] = "#212121",
  };
  
 -
@@ -101,7 +90,7 @@ index b41747f..6f3b735 100644
  static unsigned int defaultcs = 256;
  static unsigned int defaultrcs = 257;
  
-@@ -128,7 +133,7 @@ static unsigned int defaultrcs = 257;
+@@ -128,7 +123,7 @@ static unsigned int defaultrcs = 257;
   * 6: Bar ("|")
   * 7: Snowman ("☃")
   */
@@ -110,7 +99,7 @@ index b41747f..6f3b735 100644
  
  /*
   * Default colour and shape of the mouse cursor
-@@ -168,9 +173,9 @@ static Shortcut shortcuts[] = {
+@@ -168,9 +163,9 @@ static Shortcut shortcuts[] = {
  	{ MODKEY|ShiftMask,     XK_Next,        xzoom,          {.f = -1} },
  	{ MODKEY|ShiftMask,     XK_Home,        xzoomreset,     {.f =  0} },
  	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
