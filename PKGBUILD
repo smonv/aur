@@ -37,5 +37,5 @@ build() {
 
 package() {
 	cd "${srcdir}/${_pkgname}"
-	sudo make install
+	make PREFIX="$pkgdir/usr/" DESTDIR="$pkgdir/" install
 }
