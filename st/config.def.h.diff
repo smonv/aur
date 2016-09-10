@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index b41747f..65499b4 100644
+index b41747f..08241b4 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@
@@ -49,32 +49,32 @@ index b41747f..65499b4 100644
 -	"cyan",
 -	"white",
 +	/* Normal colors */
-+	"#212121",
-+	"#E32791",
-+	"#10A778",
-+	"#A89C14",
-+	"#008EC4",
-+	"#523C79",
-+	"#20A5BA",
-+	"#C6C6C6",
++	"#282c34",
++	"#e06c75",
++	"#98c379",
++	"#e5c07b",
++	"#61afef",
++	"#c678dd",
++	"#56b6c2",
++	"#abb2bf",
 +
 +	/* Bright colors */
-+	"#424242",
-+	"#fb007a",
-+	"#5FD7A7",
-+	"#F3E430",
-+	"#20BBFC",
-+	"#6855DE",
-+	"#4FB8CC",
-+	"#F1F1F1",
++	"#3e4452",
++	"#be5046",
++	"#98c379",
++	"#d19a66",
++	"#61afef",
++	"#c678dd",
++	"#56b6c2",
++	"#5c6370",
  
  	[255] = 0,
  
 -	/* more colors can be added after 255 to use with DefaultXX */
 -	"#cccccc",
 -	"#555555",
-+	[256] = "#C6C6C6",
-+	[257] = "#212121",
++	[256] = "#abb2bf",
++	[257] = "#282c34",
  };
  
 -

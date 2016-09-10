@@ -2,7 +2,7 @@
 
 pkgname=st-tthanh
 _pkgname=st
-pkgver=20160811.023225e
+pkgver=0.7.3.g078337d
 pkgrel=1
 epoch=
 pkgdesc="Simple virtual terminal emulator for X"
@@ -19,23 +19,27 @@ sha1sums=('SKIP' 'SKIP')
 
 pkgver(){
 	cd "${srcdir}/${_pkgname}"
-	git log -1 --format='%cd.%h' --date=short | tr -d -
+	git describe --tags |sed 's/-/./g'
 }
 
 prepare() {
 	cd "${srcdir}/${_pkgname}"
+	echo "${source[@]}"
+	sed '/@tic/d' -i Makefile
 	git apply ../st-hidecursor-20160727-308bfbf.diff
-	git apply ../../custom.diff
+	git apply ../../config.def.h.diff
 }
 
 
 build() {
 	cd "${srcdir}/${_pkgname}"
 	make config.h
-	make
+	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
 	cd "${srcdir}/${_pkgname}"
-	make PREFIX="$pkgdir/usr/" DESTDIR="$pkgdir/" install
+	make PREFIX="/usr" DESTDIR="${pkgdir}" install
+	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
