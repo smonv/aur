@@ -2,7 +2,7 @@
 
 pkgname=st-tthanh
 _pkgname=st
-pkgver=0.7.3.g078337d
+pkgver=0.7.24.g5a10aca
 pkgrel=1
 epoch=
 pkgdesc='Simple virtual terminal emulator for X'
@@ -14,7 +14,7 @@ makedepends=('ncurses'  'git')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=('git://git.suckless.org/st'
-		'http://st.suckless.org/patches/st-hidecursor-20160727-308bfbf.diff'
+		'http://st.suckless.org/patches/st-hidecursor-20170404-745c40f.diff'
 		'config.h')
 sha1sums=('SKIP' 'SKIP' 'SKIP')
 
@@ -27,7 +27,7 @@ prepare() {
 	cd "${srcdir}/${_pkgname}"
 	sed '/\@tic /d' -i Makefile
 	cp "${srcdir}/config.h" 'config.h'
-	git apply "${srcdir}/st-hidecursor-20160727-308bfbf.diff"
+	git apply "${srcdir}/st-hidecursor-20170404-745c40f.diff"
 }
 
 
