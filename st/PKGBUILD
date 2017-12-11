@@ -14,7 +14,7 @@ makedepends=('ncurses'  'git')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=('git://git.suckless.org/st'
-		'st-hidecursor-20170404-745c40f.diff'
+		'https://st.suckless.org/patches/hidecursor/st-hidecursor-20170404-745c40f.diff'
 		'config.h')
 sha1sums=('SKIP' 'SKIP' 'SKIP')
 
