@@ -1,8 +1,8 @@
-# Maintainer: Tien Thanh <tthanh.v9.16@gmail.com>
+# Maintainer: Solomon Van <smonv.io@gmail.com>
 
-pkgname=st-tthanh
+pkgname=st-smonv
 _pkgname=st
-pkgver=0.7.38.g0ac685f
+pkgver=0.8.1
 pkgrel=1
 epoch=
 pkgdesc='Simple virtual terminal emulator for X'
@@ -10,34 +10,37 @@ arch=('x86_64')
 url='http://git.suckless.org/st'
 license=('MIT')
 depends=('libxft' 'libxext')
-makedepends=('ncurses'  'git')
+makedepends=('ncurses')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=('git://git.suckless.org/st'
-		'https://st.suckless.org/patches/hidecursor/st-hidecursor-20170404-745c40f.diff'
+source=("https://dl.suckless.org/st/${_pkgname}-${pkgver}.tar.gz"
+		'https://st.suckless.org/patches/hidecursor/st-hidecursor-0.8.diff'
+		'https://st.suckless.org/patches/solarized/st-solarized-both-0.8.1.diff'
 		'config.h')
-sha1sums=('SKIP' 'SKIP' 'SKIP')
-
-pkgver(){
-	cd "${srcdir}/${_pkgname}"
-	git describe --tags |sed 's/-/./g'
-}
+sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
+		  'b330af3d9934587549636bc8db4b5d6d9d8eed0e323afd29283dcdec38a3dfc1'
+		  '698e7ee411cf80ae31e11d41daf2713b6ed8f3f533281efb9a8c200f458a03bf'
+		  '2d55e9350be1e8a8e4b0b270ca1bdd228fabfa2b0fe4f6353d3e354db48288f5')
 
 prepare() {
-	cd "${srcdir}/${_pkgname}"
-	sed '/\@tic /d' -i Makefile
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+	# skip terminfo which conflicts with nsurses
+	# sed -i '/tic /d' Makefile
+	for patch in ${srcdir}/*.diff; do
+		echo $patch
+		git apply "${patch}"
+	done
 	cp "${srcdir}/config.h" 'config.h'
-	git apply "${srcdir}/st-hidecursor-20170404-745c40f.diff"
 }
 
 
 build() {
-	cd "${srcdir}/${_pkgname}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
 	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-	cd "${srcdir}/${_pkgname}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
 	make PREFIX='/usr' DESTDIR="${pkgdir}" TERMINFO="${pkgdir}/usr/share/terminfo" install
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
